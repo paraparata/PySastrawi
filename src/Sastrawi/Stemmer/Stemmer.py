@@ -2,6 +2,8 @@ import re
 from Sastrawi.Stemmer.Context.Visitor.VisitorProvider import VisitorProvider
 from Sastrawi.Stemmer.Filter import TextNormalizer
 from Sastrawi.Stemmer.Context.Context import Context
+# from Sastrawi.Dictionary.ArrayDictionary import ArrayDictionary
+
 
 class Stemmer(object):
     """Indonesian Stemmer.
@@ -82,7 +84,15 @@ class Stemmer(object):
         """Stem a singular word to its common stem form."""
         context = Context(word, self.dictionary, self.visitor_provider)
         context.execute()
-        context.add_removal()
 
-        return context.result
+        # add by paraparata
+        # removedPart = re.sub(context.result, '', word, 1)
+        # return context.result + ' ' + removedPart
+        # return str(context.loop_pengembalian_akhiran())
 
+        return context.result + ' ' + str(context.removals)
+
+# words = 'makanan'
+# dictionary = ArrayDictionary()
+# stemmer = Stemmer(dictionary)
+# print(stemmer.stem('makanan'))

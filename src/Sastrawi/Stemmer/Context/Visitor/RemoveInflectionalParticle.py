@@ -8,27 +8,27 @@ class RemoveInflectionalParticle(object):
     @link http://researchbank.rmit.edu.au/eserv/rmit:6312/Asian.pdf
     """
 
-    # def visit(self, context):
-    #     result = self.remove(context.current_word)
-    #     if result != context.current_word:
-    #         removedPart = re.sub(result, '', context.current_word, 1)
-            
-    #         removal = Removal(self, context.current_word, result, removedPart, 'P')
-
-    #         context.add_removal(removal)
-    #         context.current_word = result
-
     def visit(self, context):
-        result = self.remove(context)
-        if result != context:
-            removedPart = re.sub(result, '', context, 1)
+        result = self.remove(context.current_word)
+        if result != context.current_word:
+            removedPart = re.sub(result, '', context.current_word, 1)
             
-            # removal = Removal(self, context.current_word, result, removedPart, 'P')
-            removal = Removal(self, context, result, removedPart, 'P')
+            removal = Removal(self, context.current_word, result, removedPart, 'P')
 
-            # context.add_removal(removal)
-            context = result + ' ' + removal.get_removed_part()
-        return context
+            context.add_removal(removal.get_removed_part())
+            context.current_word = result
+
+    # def visit(self, context):
+    #     result = self.remove(context)
+    #     if result != context:
+    #         removedPart = re.sub(result, '', context, 1)
+            
+    #         # removal = Removal(self, context.current_word, result, removedPart, 'P')
+    #         removal = Removal(self, context, result, removedPart, 'P')
+
+    #         # context.add_removal(removal)
+    #         context = result + ' ' + removal.get_removed_part()
+    #     return context
 
     def remove(self, word):
         """Remove inflectional particle : lah|kah|tah|pun"""
@@ -40,7 +40,7 @@ class RemoveInflectionalParticle(object):
     #     splitter = ' '
     #     return splitter.join(splitting)
 
-string = 'siapapun'
-cobs = RemoveInflectionalParticle()
-hapus = cobs.visit(string)
-print(hapus)
+# string = 'siapapun'
+# cobs = RemoveInflectionalParticle()
+# hapus = cobs.visit(string)
+# print(hapus)
