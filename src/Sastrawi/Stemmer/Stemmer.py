@@ -28,7 +28,7 @@ class Stemmer(object):
         for word in words:
             stems.append(self.stem_word(word))
 
-        return '-'.join(stems)
+        return ' '.join(stems)
 
     def stem_word(self, word):
         """Stem a word to its common stem form."""
@@ -80,19 +80,31 @@ class Stemmer(object):
         else:
             return plural
 
+    
+    def awalan(self, imbuhan):
+        prefix = ['me', 'be', 'di', 'ter', 'pe', 'se', 'ke', 'ber']
+        for awal in imbuhan:
+            if awal in prefix:
+                return awal + ' '
+        return ''
+
+    def akhiran(self, imbuhan):
+        suffix = ['lah', 'kah', 'tah', 'pun', 'kan', 'an', 'i', 'nya', 'ku']
+        for akhir in imbuhan:
+            if akhir in suffix:
+                return ' ' + akhir
+        return ''
+
     def stem_singular_word(self, word):
         """Stem a singular word to its common stem form."""
         context = Context(word, self.dictionary, self.visitor_provider)
         context.execute()
+        # return context.result
 
         # add by paraparata
         # removedPart = re.sub(context.result, '', word, 1)
         # return context.result + ' ' + removedPart
         # return str(context.loop_pengembalian_akhiran())
-
-        return context.result + ' ' + str(context.removals)
-
-# words = 'makanan'
-# dictionary = ArrayDictionary()
-# stemmer = Stemmer(dictionary)
-# print(stemmer.stem('makanan'))
+        prefix = self.awalan(context.removals)
+        suffix = self.akhiran(context.removals)
+        return prefix + context.result + suffix

@@ -15,7 +15,7 @@ class RemoveInflectionalPossessivePronoun(object):
 
             removal = Removal(self, context.current_word, result, removedPart, 'PP')
 
-            context.add_removal(removal)
+            context.add_removal(removal.get_removed_part())
             context.current_word = result
 
     def remove(self, word):

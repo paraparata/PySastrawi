@@ -21,7 +21,7 @@ class CachedStemmer(object):
                 self.cache.set(word, stem)
                 stems.append(stem)
 
-        return '-'.join(stems)
+        return ' '.join(stems)
         # return words
     
     def get_cache(self):
