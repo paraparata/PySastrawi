@@ -26,7 +26,7 @@ class Stemmer(object):
         for word in words:
             stems.append(self.stem_word(word))
 
-        return ' '.join(stems)
+        return '-'.join(stems)
 
     def stem_word(self, word):
         """Stem a word to its common stem form."""
@@ -82,6 +82,7 @@ class Stemmer(object):
         """Stem a singular word to its common stem form."""
         context = Context(word, self.dictionary, self.visitor_provider)
         context.execute()
+        context.add_removal()
 
         return context.result
 

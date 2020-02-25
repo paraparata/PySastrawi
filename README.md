@@ -56,3 +56,7 @@ Informasi Lebih Lanjut
 ----------------------
 
 - [Sastrawi PHP Repository page](https://github.com/sastrawi/sastrawi)
+- https://github.com/sastrawi/sastrawi/wiki/Stemming-Bahasa-Indonesia#stemming-bahasa-indonesia
+- https://developers.google.com/edu/python/regular-expressions
+- https://www.tutorialspoint.com/pattern-matching-in-python-with-regex
+- 
