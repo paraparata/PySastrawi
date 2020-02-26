@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <!-- <button onclick="post()">Hit me</button> -->
+    <script>
+        // function post() {
+        // POST
+        fetch('/hello', {
+
+            // Specify the method
+            method: 'POST',
+
+            // A JSON payload
+            body: JSON.stringify({
+                textToStem: 'siapapun yang makan kueku'
+            }),
+            headers: {
+                'Content-Type': 'application/json'
+            }
+        }).then(function (response) { // At this point, Flask has printed our JSON
+            return response.text();
+        }).then(function (text) {
+
+            console.log('POST response: ');
+
+            // Should be 'OK' if everything was successful
+            console.log(text);
+        });
+        // }
+    </script>
+</body>
+
+</html>
